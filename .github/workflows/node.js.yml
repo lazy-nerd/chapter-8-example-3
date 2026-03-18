@@ -9,8 +9,13 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
+    env:
+      VERSION: ${{ github.sha }}
+      CONTAINER_REGISTRY: { { secrets.CONTAINER_REGISTRY } }
+      REGISTRY_UN: { { secrets.REGISTRY_UN } }
+      REGISTRY_PW: { { secrets.REGISTRY_PW } }
 
     strategy:
       matrix:
