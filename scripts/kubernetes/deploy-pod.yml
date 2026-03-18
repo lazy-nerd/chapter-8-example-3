@@ -1,0 +1,30 @@
+#
+# Deploys the video-streaming microservice to Kubernetes.
+#
+# To deploy:
+#
+# export CONTAINER_REGISTRY=<your-container-registry>
+# export VERSION=<the-version-to-deploy>
+# envsubst < ./scripts/kubernetes/deploy.yml | kubectl apply -f -
+#
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: video-streaming
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: video-streaming
+  template:
+    metadata:
+      labels:
+        app: video-streaming
+    spec:
+      containers:
+        - name: video-streaming
+          image: $CONTAINER_REGISTRY/video-streaming:$VERSION
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: PORT
+              value: "4000"
