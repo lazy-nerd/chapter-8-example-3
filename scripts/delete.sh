@@ -15,4 +15,5 @@ set -u # or set -o nounset
 : "$CONTAINER_REGISTRY"
 : "$VERSION"
 
-envsubst < ./scripts/kubernetes/deploy.sh | kubectl delete -f -
+envsubst < ./scripts/kubernetes/deploy-service.yml | kubectl delete -f -
+envsubst < ./scripts/kubernetes/deploy-pod.yml | kubectl delete -f -
