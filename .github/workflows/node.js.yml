@@ -13,9 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       VERSION: ${{ github.sha }}
-      CONTAINER_REGISTRY: { { secrets.CONTAINER_REGISTRY } }
-      REGISTRY_UN: { { secrets.REGISTRY_UN } }
-      REGISTRY_PW: { { secrets.REGISTRY_PW } }
+      CONTAINER_REGISTRY: ${{ secrets.CONTAINER_REGISTRY }}
+      REGISTRY_UN: ${{ secrets.REGISTRY_UN }}
+      REGISTRY_PW: ${{ secrets.REGISTRY_PW }}
 
     steps:
       - uses: actions/checkout@v4
